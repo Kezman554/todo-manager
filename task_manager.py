@@ -41,7 +41,14 @@ class TaskManager:
         print(f"\n=== {priority} Priority Tasks ===")
         for task in filtered:
             print(f"  {task}")
-
+    
+    def remove_task(self, task_number):
+        """Remove a task by its number"""
+        if 0 < task_number <= len(self.tasks):
+            removed = self.tasks.pop(task_number - 1)
+            print(f"Removed: {removed.description}")
+        else:
+            print("Invalid task number!")
 # Test the TaskManager
 if __name__ == "__main__":
     manager = TaskManager()
@@ -52,5 +59,6 @@ if __name__ == "__main__":
     
     manager.show_all_tasks()
     manager.complete_task(1)
+    manager.remove_task(4)
     print()
-    manager.show_by_priority("High")
+    manager.show_all_tasks()
