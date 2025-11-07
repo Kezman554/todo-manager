@@ -30,7 +30,17 @@ class TaskManager:
             print(f"Completed: {self.tasks[task_number - 1].description}")
         else:
             print("Invalid task number!")
-
+    def show_by_priority(self, priority):
+        """Display tasks filtered by priority"""
+        filtered = [task for task in self.tasks if task.priority == priority]
+        
+        if not filtered:
+            print(f"No tasks with {priority} priority.")
+            return
+        
+        print(f"\n=== {priority} Priority Tasks ===")
+        for task in filtered:
+            print(f"  {task}")
 
 # Test the TaskManager
 if __name__ == "__main__":
@@ -38,6 +48,9 @@ if __name__ == "__main__":
     manager.add_task("Learn Git", "High")
     manager.add_task("Practice branching", "High")
     manager.add_task("Build a project", "Medium")
+    manager.add_task("Take a break", "Low")
+    
     manager.show_all_tasks()
     manager.complete_task(1)
-    manager.show_all_tasks()
+    print()
+    manager.show_by_priority("High")
